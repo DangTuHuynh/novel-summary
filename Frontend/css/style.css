@@ -1,0 +1,258 @@
+/* Reset CSS */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.5), rgba(204, 204, 204, 0.5));
+    font-family: helvetica, Arial, sans-serif;
+    z-index: 0;
+}
+
+/* 
+1. từ ngoài vào trong
+2. từ trên xuống dưới
+3. tổng quan đến chi tiết
+*/
+
+/* 
+1. vị trí
+2. kích thước
+3. màu sắc
+4. kiểu dáng 
+*/
+
+#main {
+
+}
+
+/* thuộc tính background header*/
+#header {
+    width: 100%;
+    height: 46px;
+    background-color: rgb(246, 247, 248);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+#header ul {
+    list-style-type: none;
+}
+
+/* #Nav */
+#nav {
+    float: left;
+    margin-left: 130px;
+    display: flex;
+    align-items: center; /*căn giữa */
+    height: 46px;
+}
+
+/* position */
+#nav li,
+#nav-back li {
+    position: relative;
+}
+
+/* thuộc tính header, list "Hướng dẫn"*/
+#nav-back > li > a ,
+#nav li a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 46px;
+    padding: 0 6px;
+    display: block;
+}
+
+/* icon home */
+#nav .home-icon {
+    display: block;
+    font-size: 23px;
+    padding: 11.5px;
+}
+
+/*hover header */
+#nav li:hover,
+#nav-back li:hover,
+#nav-back > li:hover > a,
+#nav > li:hover > a {
+    color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(215, 211, 211, 0.6);
+    cursor: pointer;
+}
+
+/* hover ẩn hiện subnav */
+#nav li:hover .subnav {
+    display: inline-block;
+    top: 100%;
+    left: 0;
+}
+
+/*hover thuộc tính <li> */
+#nav .subnav li:hover {
+    background-color: #f6f7f8;
+    width: 100%;
+    padding: 0 6px;
+}
+
+/*thuộc tính background "hướng dẫn"*/
+#nav .subnav {
+    display: none;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    position: absolute;
+    top: 46px;
+    min-width: 140px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+    
+}
+
+/*icon "hướng dẫn"*/
+#nav .nav-arrow-down {
+    font-size: 12px;
+    margin: 1.3px;
+}
+
+
+/* #Nav-Back */
+#nav-back {
+    float: right;
+    display: flex;
+    align-items: center; /*căn giữa */
+    height: 46px;
+    margin-right: 140px;
+}
+
+/* thuộc tính icon search và more */
+#nav-back .more-icon,
+#nav-back .search-icon {
+    display: block;
+    color: #000;
+    font-size: 24px;
+    padding: 11px;
+}
+
+/* hover ẩn hiện more-menu */
+#nav-back li:hover .more-menu {
+    display: inline-block;
+    top: 100%;
+    right: 0;
+}
+
+/* hover thuộc tính <li> */
+#nav-back .more-menu a:hover {
+    background-color: #f6f7f8;
+    width: 100%;
+    padding: 10px 16px;
+}
+
+/*thuộc tính bachground list "more" */
+#nav-back .more-menu {
+    display: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background-color: #fff;
+    min-width: 140px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* thuộc tính list "more" */
+#nav-back .more-menu a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #111111;
+    font-size: 15px;
+    line-height: 25px;
+    padding: 10px;
+    display: block;
+}
+
+/*icon darkground*/
+.darkground-off-icon {
+    position: absolute;
+    font-size: 22px !important;
+    right:20px;
+    top: 21.5%;
+    margin: 1.3px;
+}
+
+#banner {
+
+}
+
+/*thuộc tính ảnh bìa */
+#banner #cover-image {
+    margin-top: 46px ;
+    width: 100%;
+    height: 180px;
+    background: rgba(199, 203, 209, 0.3) url('../assets/img/image1.png') center no-repeat;
+}
+
+#content {
+    
+}
+
+#footer {
+
+}
+
+#story-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cột đều nhau */
+  gap: 20px; /* khoảng cách giữa các truyện */
+  padding: 20px;
+}
+
+.story-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15x;
+  background-color: #fdfdfd;
+  max-width: 220px;
+  min-height: 281px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.story-container {
+    position: relative;
+    margin: 40px auto;
+    max-width: 1125px;
+    padding: 20px;
+}
+
+.story-card {
+    background-color: #fff;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.story-card h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    color: #333;
+}
+
+.story-card p {
+    font-size: 14px;
+    color: #555;
+    margin: 4px 0;
+}
+
+#load-more {
+  position: absolute;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 13px;
+  bottom: -18px;
+  right: 5%;
+  cursor: pointer;
+}
