@@ -5,7 +5,7 @@
 }
 
 html {
-    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.5), rgba(204, 204, 204, 0.5));
+    background: rgba(204, 204, 204, 0.5);
     font-family: helvetica, Arial, sans-serif;
     z-index: 0;
 }

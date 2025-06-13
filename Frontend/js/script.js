@@ -1,24 +1,25 @@
 let currentIndex = 0;
 const storiesPerPage = 8;
 let allStories = [];
-let covers = {};
 
 // Gọi dữ liệu từ JSON
-Promise.all([
-  fetch('data/novels.json').then(res => res.json()),
-  fetch('data/cover novels.json').then(res => res.json())
-]).then(([novels, coverData]) => {
-  // coverData là mảng object 1 key => convert thành object dễ tra cứu
-  coverData.forEach(item => {
-    const key = Object.keys(item)[0];
-    covers[key] = item[key];
+fetch('data/novels.json')
+  .then(res => res.json())
+  .then(novels => {
+    allStories = novels;
+    renderStories();
+  }).catch(error => {
+    console.error('Lỗi khi tải dữ liệu:', error);
   });
 
-  allStories = novels;
-  renderStories();
-}).catch(error => {
-  console.error('Lỗi khi tải dữ liệu:', error);
-});
+function slugify(text) {
+  return text.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
 
 function renderStories() {
   const container = document.getElementById('story-list');
@@ -28,10 +29,12 @@ function renderStories() {
     const storyDiv = document.createElement('div');
     storyDiv.className = 'story-card';
 
-    const coverUrl = covers[story.name] || 'https://www.novelupdates.com/img/noimagefound.jpg';
+    const slug = slugify(story.name);
+    let coverUrl = `assets/img/${slug}.jpg`;
 
     storyDiv.innerHTML = `
-      <img src="${coverUrl}" alt="Cover" style="width:100%; height:150px; object-fit:cover; border-radius:5px;">
+      <img src="${coverUrl}" alt="Cover" style="width:100%; height:150px; object-fit:cover; border-radius:5px;" 
+           onerror="this.onerror=null;this.src='https://www.novelupdates.com/img/noimagefound.jpg';">
       <h3>${story.name}</h3>
       <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
       <p><strong>Rating:</strong> ${story.rating}</p>
@@ -41,12 +44,6 @@ function renderStories() {
   });
 
   currentIndex += storiesPerPage;
-
-  // if (currentIndex >= allStories.length) {
-  //   document.getElementById('load-more').style.display = 'none';
-  // }
-  
 }
 
 document.getElementById('load-more').addEventListener('click', renderStories);
-
