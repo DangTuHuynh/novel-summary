@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./assets/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="./assets/font-awesome-icon/css/font-awesome.css">
     <title>StorySummary</title>
+    <script src="./js/script.js" defer></script>
 </head>
 <body>
     <div id="main">
@@ -14,21 +14,50 @@
         <div id="header">
             <ul id="nav">
                 <li><i class="home-icon ti-home"></i></li>
-                <li><a href="">Sáng tác</a></li>
-                <li><a href="">AI dịch</a></li>
-                <li><a href="">Xuất bản</a></li>
-                <li><a href="">Thảo luận</a></li>
-                <li><a href="">Dach sách</a></li>
+                <li><a href="">Home</a></li>
+                <li><a href="#" id="random-novel">Random novel</a></li>
+                <li><a href="#">Xuất bản</a></li>
+                <li><a href="#">Thảo luận</a></li>
+                <li><a href="#" id="full-list">Dach sách</a></li>
                 <li>
-                    <a href="">
-                        Hướng dẫn 
+                    <a href="#">
+                        Thể Loại 
                         <i class="nav-arrow-down ti-angle-down"></i>
                     </a>
                     <ul class="subnav">
-                        <li><a href="">Đăng truyện</a></li>
-                        <li><a href="">Giới thiệu</a></li>
-                        <li><a href="">Góp ý - Báo lỗi</a></li>
-                        <li><a href="">Privacy Policy</a></li>
+                        <li><a href="#" class="genre-link" data-genre="action">action</a></li>
+                        <li><a href="#" class="genre-link" data-genre="adult">adult</a></li>
+                        <li><a href="#" class="genre-link" data-genre="adventure">adventure</a></li>
+                        <li><a href="#" class="genre-link" data-genre="comedy">comedy</a></li>
+                        <li><a href="#" class="genre-link" data-genre="drama">drama</a></li>
+                        <li><a href="#" class="genre-link" data-genre="fantasy">fantasy</a></li>
+                        <li><a href="#" class="genre-link" data-genre="tragedy">tragedy</a></li>
+                        <li><a href="#" class="genre-link" data-genre="shounen">shounen</a></li>
+                        <li><a href="#" class="genre-link" data-genre="xuanhuan">xuanhuan</a></li>
+                        <li><a href="#" class="genre-link" data-genre="josei">josei</a></li>
+                        <li><a href="#" class="genre-link" data-genre="romance">romance</a></li>
+                        <li><a href="#" class="genre-link" data-genre="martial arts">martial arts</a></li>
+                        <li><a href="#" class="genre-link" data-genre="mature">mature</a></li>
+                        <li><a href="#" class="genre-link" data-genre="slice of life">slice of life</a></li>
+                        <li><a href="#" class="genre-link" data-genre="mystery">mystery</a></li>
+                        <li><a href="#" class="genre-link" data-genre="school life">school life</a></li>
+                        <li><a href="#" class="genre-link" data-genre="sci-fi">sci-fi</a></li>
+                        <li><a href="#" class="genre-link" data-genre="psychological">psychological</a></li>
+                        <li><a href="#" class="genre-link" data-genre="seinen">seinen</a></li>
+                        <li><a href="#" class="genre-link" data-genre="shoujo">shoujo</a></li>
+                        <li><a href="#" class="genre-link" data-genre="shoujo ai">shoujo ai</a></li>
+                        <li><a href="#" class="genre-link" data-genre="harem">harem</a></li>
+                        <li><a href="#" class="genre-link" data-genre="shounen ai">shounen ai</a></li>
+                        <li><a href="#" class="genre-link" data-genre="historical">historical</a></li>
+                        <li><a href="#" class="genre-link" data-genre="smut">smut</a></li>
+                        <li><a href="#" class="genre-link" data-genre="sports">sports</a></li>
+                        <li><a href="#" class="genre-link" data-genre="supernatural">supernatural</a></li>
+                        <li><a href="#" class="genre-link" data-genre="mecha">mecha</a></li>
+                        <li><a href="#" class="genre-link" data-genre="wuxia">wuxia</a></li>
+                        <li><a href="#" class="genre-link" data-genre="horror">horror</a></li>
+                        <li><a href="#" class="genre-link" data-genre="xianxia">xianxia</a></li>
+                        <li><a href="#" class="genre-link" data-genre="yaoi">yaoi</a></li>
+                        <li><a href="#" class="genre-link" data-genre="yuri">yuri</a></li>
                     </ul>
                 </li>        
             </ul>
@@ -37,18 +66,19 @@
             
             <!-- Begin: nav-back -->
             <ul id="nav-back">
-                <li><i class="search-icon ti-search"></i></li>
+                <li><a href="">Register</a></li>
+                <li><a href="">Login</a></li>
                 <li>
-                    <i class="more-icon ti-more" ></i>
+                    <i class="more-icon ti-more"></i>
                     <ul class="more-menu">
-                        <li>
-                            <a href="">Nền tối</a>
+                        <li id="dark-mode-toggle">
+                            <a href="">Dark mode</a>
                             <i class="darkground-off-icon fa fa-toggle-off"></i>
                         </li>
-                        <li><a href="">Lịch sử</a></li>
+                        <li><a href="">favourite</a></li>
                     </ul>                
                 </li>
-                <li><a href="">Đăng nhập</a></li>
+                <li><i class="search-icon ti-search"></i></li>
             </ul>
             <!-- End: nav-back -->
             
@@ -56,17 +86,27 @@
 
         <div id="banner">
             <div id="cover-image"></div>
+            <h1>Tìm kiếm truyện</h1>
+
+              <div id="filters">
+                <input type="text" id="search-box" placeholder="Tìm tên truyện..." />
+                <button id="apply-filters">tìm kiếm</button>
+              </div>
+
+              <div id="story-list"></div>
+                <button id="load-more">Tải thêm</button>
         </div>
+
+        <!-- code mới -->
+        <div id="detail-view" class="hidden"></div>
 
         <div id="content">
             <div id="story-list" class="story-container"></div>
-            <button id="load-more">more</button>
         </div>
         
         <div id="footer">
 
         </div>
     </div>
-    <script src="./js/script.js"></script>
 </body>
 </html>

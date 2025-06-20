@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="./assets/font-awesome-icon/css/font-awesome.css">
+    <title>StorySummary</title>
+    <link rel="stylesheet" href="search.css">
+    <script src="search.js" defer></script>
+</head>
+<body>
+    <div id="main">
+        <!-- Begin: nav -->
+        <div id="header">
+            <ul id="nav">
+                <li><i class="home-icon ti-home"></i></li>
+                <li><a href="">Home</a></li>
+                <li><a href="">Truyện ngẫu nhiên</a></li>
+                <li><a href="">Xuất bản</a></li>
+                <li><a href="">Thảo luận</a></li>
+                <li><a href="">Dach sách</a></li>
+                <li>
+                    <a href="">
+                        Hướng dẫn 
+                        <i class="nav-arrow-down ti-angle-down"></i>
+                    </a>
+                    <ul class="subnav">
+                        <li><a href="">Đăng truyện</a></li>
+                        <li><a href="">Giới thiệu</a></li>
+                        <li><a href="">Góp ý - Báo lỗi</a></li>
+                        <li><a href="">Privacy Policy</a></li>
+                    </ul>
+                </li>        
+            </ul>
+            <!-- End: nav -->
+
+            
+            <!-- Begin: nav-back -->
+            <ul id="nav-back">
+                <li><i class="search-icon ti-search"></i></li>
+                <li>
+                    <i class="more-icon ti-more" ></i>
+                    <ul class="more-menu">
+                        <li>
+                            <a href="">Nền tối</a>
+                            <i class="darkground-off-icon fa fa-toggle-off"></i>
+                        </li>
+                        <li><a href="">Lịch sử</a></li>
+                    </ul>                
+                </li>
+                <li><a href="">Đăng nhập</a></li>
+            </ul>
+            <!-- End: nav-back -->
+            
+        </div>
+
+        <div id="banner">
+            <div id="cover-image"></div>
+            <h1>Tìm kiếm truyện</h1>
+
+              <div id="filters">
+                <input type="text" id="search-box" placeholder="Tìm tên truyện..." />
+                <button id="apply-filters">tìm kiếm</button>
+              </div>
+
+              <div id="story-list"></div>
+                <button id="load-more">Tải thêm</button>
+        </div>
+
+        <div id="content">
+            <div id="story-list" class="story-container"></div>
+        </div>
+        
+        <div id="footer">
+
+        </div>
+    </div>
+</body>
+</html>
