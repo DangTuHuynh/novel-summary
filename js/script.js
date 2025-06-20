@@ -6,8 +6,8 @@ let covers = {};
 
 // Gọi dữ liệu từ JSON
 Promise.all([
-  fetch('/novel-summary/Frontend/data/novels.json').then(res => res.json()),
-  fetch('/novel-summary/Frontend/data/cover novels.json').then(res => res.json())
+  fetch('data/novels.json').then(res => res.json()),
+  fetch('data/cover novels.json').then(res => res.json())
 ]).then(([novels, coverData]) => {
   coverData.forEach(item => {
     const key = Object.keys(item)[0];
