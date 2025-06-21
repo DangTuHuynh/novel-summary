@@ -31,7 +31,7 @@ html {
 /* #Nav */
 #nav {
     float: left;
-    margin-left: 130px;
+    margin-left: 110px;
     display: flex;
     align-items: center;
     height: 55px;
@@ -106,7 +106,7 @@ html {
   font-size: 14.8px;
 }
 
-/*icon "hướng dẫn"*/
+/*icon "Thể loại"*/
 #nav .nav-arrow-down {
     font-size: 12px;
     margin: 1.3px;
@@ -119,7 +119,7 @@ html {
     display: flex;
     align-items: center; /*căn giữa */
     height: 55px;
-    margin-right: 140px;
+    margin-right: 120px;
 }
 
 /* thuộc tính icon search và more */
@@ -162,7 +162,7 @@ html {
     text-decoration: none;
     color: #111111;
     font-size: 15px;
-    line-height: 25px;
+    line-height: 25.1px;
     padding: 10px;
     display: block;
 }
@@ -176,7 +176,12 @@ html {
     margin: 1.3px;
 }
 
-
+#nav,
+#nav-back,
+#banner #cover-image {
+  transition: background-position 1s cubic-bezier(0.4,0,0.2,1);
+  transition: margin 1s cubic-bezier(0.4,0,0.2,1);
+}
 
 /* body.dark-mode {
   background: rgba(43, 43, 43, 0.5);
@@ -324,20 +329,38 @@ h1 {
 
     /* @media */
 /* Ẩn toggle mặc định */
-#more-toggle {
+#home-toggle,
+#more-toggle,
+#home-toggle #subnav-2 {
   display: none;
   position: relative;
 }
 
-/* Hiện menu khi hover */
+/*hover ẩn hiện menu */
+#home-toggle:hover .more-menu,
 #more-toggle:hover .more-menu {
   display: block;
   position: absolute;
   top: 100%;
   right: 0;
   background: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
   z-index: 100;
+}
+
+/* hover ẩn hiện "thể loại" */
+#home-toggle li:hover #subnav-2 {
+  display: block;
+  position: absolute;
+  left: 140px;
+  top: 0;
+}
+
+/* thuộc tính "thể loại" */
+#home-toggle #subnav-2  {
+  min-width: 100px;
+  max-height:246px;
+  padding: 0;
 }
 
 #more-toggle i {
@@ -347,6 +370,7 @@ h1 {
   cursor: pointer;
 }
 
+#home-toggle .more-menu,
 #more-toggle .more-menu {
   display: none;
   list-style: none;
@@ -355,6 +379,11 @@ h1 {
   min-width: 140px;
 }
 
+#home-toggle .more-menu {
+  left: 0;
+}
+
+#home-toggle .more-menu li a,
 #more-toggle .more-menu li a {
   display: block;
   padding: 10px 16px;
@@ -363,22 +392,46 @@ h1 {
   font-weight: bold;
 }
 
+#home-toggle .more-menu li a:hover,
 #more-toggle .more-menu li a:hover {
   background: #f6f6f6;
 }
 
+#home-toggle li a {
+  font-size: 15px;
+  line-height: 40.3px;
+}
+
 /* RESPONSIVE: Khi thu nhỏ màn hình */
-@media screen and (max-width: 1110px) {
+@media screen and (max-width: 1150px) {
+  #nav > li:not(#home-toggle),
   #nav-back > li:not(#more-toggle) {
     display: none;
   }
 
+  #home-toggle,
   #more-toggle {
     display: block;
   }
+
+  #nav,
+  #nav-back {
+    margin: 0 50px;
+  }
+
+  #banner #cover-image {
+    background-position: 10%;
+  }
+
 }
 
+@media screen and (max-width: 800px) {
+  #nav,
+  #nav-back {
+    margin: 0 23px;
+  }
 
+}
 
 /* html chi tiết truyện (ghi đè) */
 
