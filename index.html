@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./assets/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="./assets/font-awesome-icon/css/font-awesome.css">
+    <link rel="icon" href="assets\img\Logo_09120D34-E32_A614_PA.png" type="image/png">
     <title>StorySummary</title>
     <script src="./js/script.js" defer></script>
 </head>
@@ -14,8 +15,11 @@
         <!-- Begin: nav -->
         <div id="header">
             <ul id="nav">
-                <li><i class="home-icon ti-home"></i></li>
-                <li><a href="">Home</a></li>
+                <li>
+                    <a href="">
+                        <img src="assets\img\Logo_09120D34-E32_A614_PA.png" alt="Home" class="logo">
+                    </a>
+                </li>
                 <li><a href="#" id="random-novel">Random novel</a></li>
                 <li><a href="#">Thảo luận</a></li>
                 <li><a href="#" id="full-list">Dach sách</a></li>
@@ -112,6 +116,7 @@
                     </ul>
                 </li>
             </ul>
+
             <!-- End: nav -->
 
             
@@ -153,8 +158,11 @@
             <h1>Tìm kiếm truyện</h1>
 
               <div id="filters">
-                <input type="text" id="search-box" placeholder="Tìm tên truyện..." />
-                <button id="apply-filters">tìm kiếm</button>
+                <div class="search-wrapper">
+                    <input type="text" id="search-box" placeholder="Tìm tên truyện..." />
+                    <ul id="search-suggestions" class="hidden"></ul>
+                </div>
+                <button id="apply-filters">search</button>
               </div>
 
               <div id="story-list"></div>

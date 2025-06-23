@@ -205,3 +205,64 @@ function toggleTitle(span, fullTitle) {
   }
 }
 
+
+// code mới // gợi ý tìm kiếm 
+const searchBox = document.getElementById('search-box');
+const suggestionBox = document.getElementById('search-suggestions');
+
+searchBox.addEventListener('input', () => {
+  const rawInput = searchBox.value;
+
+  // Chuẩn hóa input bằng innerHTML -> innerText
+  const tempInputDiv = document.createElement('div');
+  tempInputDiv.innerHTML = rawInput;
+  const input = tempInputDiv.innerText.toLowerCase().trim();
+
+  if (!input) {
+    suggestionBox.classList.add('hidden');
+    suggestionBox.innerHTML = '';
+    return;
+  }
+
+  // Tìm truyện khớp (cũng chuẩn hóa)
+  const matches = allStories
+    .map(story => {
+      const temp = document.createElement('div');
+      temp.innerHTML = story.name;
+      const cleanName = temp.innerText;
+      return {
+        original: story.name,
+        clean: cleanName.toLowerCase()
+      };
+    })
+    .filter(entry => entry.clean.includes(input))
+    .slice(0, 8); // giới hạn gợi ý
+
+  if (matches.length === 0) {
+    suggestionBox.classList.add('hidden');
+    suggestionBox.innerHTML = '';
+    return;
+  }
+
+  // Gợi ý hiển thị tên gốc
+  suggestionBox.innerHTML = matches.map(entry => `<li>${entry.original}</li>`).join('');
+  suggestionBox.classList.remove('hidden');
+});
+
+
+// Khi click vào 1 gợi ý
+suggestionBox.addEventListener('click', (e) => {
+  if (e.target.tagName === 'LI') {
+    searchBox.value = e.target.innerText;
+    suggestionBox.classList.add('hidden');
+    suggestionBox.innerHTML = '';
+  }
+});
+
+// Ẩn gợi ý khi click ngoài
+document.addEventListener('click', (e) => {
+  if (!searchBox.contains(e.target) && !suggestionBox.contains(e.target)) {
+    suggestionBox.classList.add('hidden');
+    suggestionBox.innerHTML = '';
+  }
+});
