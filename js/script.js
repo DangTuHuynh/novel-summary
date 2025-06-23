@@ -21,6 +21,13 @@ Promise.all([
   console.error('Lỗi khi tải dữ liệu:', error);
 });
 
+function normalizeText(text) {
+  const div = document.createElement('div');
+  div.innerHTML = text;
+  return div.innerText.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+
 function renderStories() {
   const container = document.getElementById('story-list');
   container.innerHTML = ''; // Xoá cũ
@@ -60,11 +67,11 @@ function renderStories() {
 
 // Nút "Lọc"
 document.getElementById('apply-filters').addEventListener('click', () => {
-  const keyword = document.getElementById('search-box').value.toLowerCase();
+  const keyword = normalizeText(document.getElementById('search-box').value);
   const selectedGenres = Array.from(document.querySelectorAll('.genre-checkbox:checked')).map(cb => cb.value);
 
   filteredStories = allStories.filter(story => {
-    const nameMatch = story.name.toLowerCase().includes(keyword);
+    const nameMatch = normalizeText(story.name).includes(keyword);
     const genreMatch = selectedGenres.length === 0 || selectedGenres.some(genre =>
       (story.genres || []).includes(genre)
     );
@@ -216,7 +223,7 @@ searchBox.addEventListener('input', () => {
   // Chuẩn hóa input bằng innerHTML -> innerText
   const tempInputDiv = document.createElement('div');
   tempInputDiv.innerHTML = rawInput;
-  const input = tempInputDiv.innerText.toLowerCase().trim();
+  const input = normalizeText(rawInput);
 
   if (!input) {
     suggestionBox.classList.add('hidden');
@@ -226,15 +233,10 @@ searchBox.addEventListener('input', () => {
 
   // Tìm truyện khớp (cũng chuẩn hóa)
   const matches = allStories
-    .map(story => {
-      const temp = document.createElement('div');
-      temp.innerHTML = story.name;
-      const cleanName = temp.innerText;
-      return {
-        original: story.name,
-        clean: cleanName.toLowerCase()
-      };
-    })
+    .map(story => ({
+      original: story.name,
+      clean: normalizeText(story.name)
+    }))
     .filter(entry => entry.clean.includes(input))
     .slice(0, 8); // giới hạn gợi ý
 
