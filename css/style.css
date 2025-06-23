@@ -400,7 +400,7 @@ h1 {
   right: 0;
   background: white;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
-  z-index: 100;
+  z-index: 4;
 }
 
 /* hover ẩn hiện "thể loại" */
@@ -414,7 +414,7 @@ h1 {
 /* thuộc tính "thể loại" */
 #home-toggle #subnav-2  {
   min-width: 100px;
-  max-height:246px;
+  max-height: 246px;
   padding: 0;
 }
 
@@ -463,10 +463,14 @@ h1 {
   padding: 0 3px;
 }
 
+.logo-media {
+  display: none;
+}
+
 /* @media Khi thu nhỏ màn hình */
 @media screen and (max-width: 1150px) {
-  #nav > li:not(#home-toggle),
-  #nav-back > li:not(#more-toggle) {
+  #nav-back > li:not(#more-toggle),
+  #nav > li:not(#home-toggle, .logo-media) {
     display: none;
   }
 
@@ -484,6 +488,11 @@ h1 {
     background-position: 15%;
   }
 
+  .logo-media {
+    display: inline-block;
+    padding: 0 -2px;
+  }
+
 }
 
 @media screen and (max-width: 800px) {
@@ -496,8 +505,6 @@ h1 {
   #search-suggestions {
     width: 230px !important;
   }
-
-  
 
 }
 
