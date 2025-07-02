@@ -599,3 +599,79 @@ h1 {
   justify-content: flex-end;
   margin-top: 150px;
 }
+
+/* css Login */
+.auth-button a {
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 0 4px;
+  color: #000;
+}
+
+.auth-form {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form .form-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.auth-form input,
+.auth-form button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+}
+
+.auth-form input {
+  border: 1px solid #ccc;
+}
+
+.auth-form button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.auth-form button:hover {
+  background: #3a9d41;
+}
+
+
+.story-card {
+  position: relative;
+}
+
+.favorite-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 22px;
+  color: hsla(0, 14%, 86%, 0.849);
+  display: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.story-card:hover .favorite-icon {
+  display: block;
+}
+
+.favorite-icon.favorited {
+  color: #e91e63;
+}

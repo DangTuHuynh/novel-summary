@@ -56,6 +56,7 @@ function renderStories() {
       <span class="see-more" onclick="toggleTitle(this, '${story.name.replace(/'/g, "\\'")}'); event.stopPropagation()">xem thêm</span>
       <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
       <p><strong>Rating:</strong> ${story.rating}</p>
+      <i class="favorite-icon fa fa-heart" data-name="${story.name}"></i>
     </div>`;
     
 
@@ -167,9 +168,31 @@ function renderAllStories() {
       <span class="see-more" onclick="toggleTitle(this, '${story.name.replace(/'/g, "\\'")}'); event.stopPropagation()">xem thêm</span>
       <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
       <p><strong>Rating:</strong> ${story.rating}</p>
+      <i class="favorite-icon fa fa-heart" data-name="${story.name}"></i>
     </div>`;
 
     container.appendChild(storyDiv);
+  });
+  const favIcon = storyDiv.querySelector('.favorite-icon');
+  let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+  if (favorites.includes(story.name)) {
+    favIcon.classList.add('favorited');
+  }
+
+  favIcon.addEventListener('click', (e) => {
+    e.stopPropagation(); // Ngăn không trigger clickAnh()
+    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+    if (favorites.includes(story.name)) {
+      favorites = favorites.filter(name => name !== story.name);
+      favIcon.classList.remove('favorited');
+    } else {
+      favorites.push(story.name);
+      favIcon.classList.add('favorited');
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   });
 }
 
@@ -267,4 +290,61 @@ document.addEventListener('click', (e) => {
     suggestionBox.classList.add('hidden');
     suggestionBox.innerHTML = '';
   }
+});
+
+// js Login
+function openAuthModal() {
+  document.getElementById('auth-modal').style.display = 'flex';
+  showLogin();
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal').style.display = 'none';
+}
+
+function showRegister() {
+  document.getElementById('login-box').style.display = 'none';
+  document.getElementById('register-box').style.display = 'block';
+}
+
+function showLogin() {
+  document.getElementById('login-box').style.display = 'block';
+  document.getElementById('register-box').style.display = 'none';
+}
+
+function handleRegister() {
+  const username = document.getElementById('register-username').value.trim();
+  const password = document.getElementById('register-password').value;
+
+  if (!username || !password) {
+    alert('Vui lòng nhập đầy đủ thông tin!');
+    return;
+  }
+
+  if (localStorage.getItem("user_" + username)) {
+    alert('Tên đăng nhập đã tồn tại!');
+    return;
+  }
+
+  localStorage.setItem("user_" + username, password);
+  alert('Đăng ký thành công!');
+  showLogin();
+}
+
+function handleLogin() {
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value;
+  const storedPassword = localStorage.getItem("user_" + username);
+
+  if (storedPassword === password) {
+    alert('Đăng nhập thành công!');
+    closeAuthModal();
+    document.querySelector('.auth-button').innerHTML = `<span>Xin chào, ${username}</span>`;
+  } else {
+    alert('Sai tên đăng nhập hoặc mật khẩu!');
+  }
+}
+
+document.getElementById('auth-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeAuthModal();
 });

@@ -1,0 +1,31 @@
+[
+  {
+    "id":66398,
+    "name":"Darenimo Natsukanai Soro Gyaru ga Mainichi O Tomari Shita Gatte Kuru",
+    "assoc_names":"['誰にも懐かないソロギャルが毎日お泊まりしたがってくる【電子特典付き】']",
+    "original_language":"japanese",
+    "authors":"['あさのハジメ']",
+    "genres":"['comedy', 'drama', 'romance', 'school life', 'slice of life']",
+    "tags":"['beautiful female lead', 'caring protagonist', 'clingy lover', 'cohabitation', 'cute story', 'doting love interests', 'famous protagonist', 'handsome male lead', 'heartwarming', 'male protagonist', 'modern day', 'past plays a big role', 'past trauma', 'pretend lovers', 'siblings not related by blood', 'younger sisters']",
+    "start_year":"2023",
+    "licensed":false,
+    "original_publisher":null,
+    "english_publisher":null,
+    "complete_original":false,
+    "chapters_original_current":"2",
+    "complete_translated":false,
+    "release_freq":92.3,
+    "activity_week_rank":2000,
+    "activity_month_rank":11208,
+    "activity_all_time_rank":15089,
+    "on_reading_lists":277,
+    "reading_list_month_rank":17145,
+    "reading_list_all_time_rank":14942,
+    "rating":3.3,
+    "rating_votes":23,
+    "related_series_ids":null,
+    "recommended_series_ids":"[43073]",
+    "recommendation_list_ids":"[80468]",
+    "chapter_latest_translated":"v1c3 part1"
+  }
+]

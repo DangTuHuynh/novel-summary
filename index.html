@@ -16,10 +16,11 @@
         <div id="header">
             <ul id="nav">
                 <li>
-                    <a href="">
+                    <a href="https://mlongkk.github.io/Project-Wibu/index.html">
                         <img src="assets\img\Logo_09120D34-E32_A614_PA.png" alt="Home" class="logo">
                     </a>
                 </li>
+                <li><a href="">Home</a></li>
                 <li><a href="#" id="random-novel">Random novel</a></li>
                 <li><a href="#">Thảo luận</a></li>
                 <li><a href="#" id="full-list">Dach sách</a></li>
@@ -67,7 +68,9 @@
                 
                 <!-- @media Home-toggle -->
                 <li id="home-toggle">
-                    <i class="home-icon ti-home"></i>
+                    <a href="" style="padding: 0">
+                        <i class="home-icon ti-home"></i>
+                    </a>
                     <ul class="more-menu">
                         <li>
                             <a href="#">
@@ -117,7 +120,7 @@
                 </li>
                 
                 <li class="logo-media">
-                    <a href="">
+                    <a href="https://mlongkk.github.io/Project-Wibu/index.html">
                         <img src="assets\img\Logo_09120D34-E32_A614_PA.png" alt="Home" class="logo">
                     </a>
                 </li>
@@ -129,7 +132,7 @@
             <!-- Begin: nav-back -->
             <ul id="nav-back">
                 <li><a href="">Register</a></li>
-                <li><a href="">Login</a></li>
+                <li class="auth-button"><a href="#" onclick="openAuthModal()">Login</a></li>
                 <li>
                     <i class="more-icon ti-more"></i>
                     <ul class="more-menu">
@@ -147,7 +150,7 @@
                     <i class="ti-menu"></i>
                     <ul class="more-menu" id="more-dropdown">
                         <li><a href="">Register</a></li>
-                        <li><a href="">Login</a></li>
+                        <li class="auth-button"><a href="#" onclick="openAuthModal()">Login</a></li>
                         <li><a href="">Dark mode</a></li>
                         <li><a href="">Favourite</a></li>
                     </ul>
@@ -185,6 +188,23 @@
         <div id="footer">
 
         </div>
+    </div>
+
+    <div class="auth-form" id="auth-modal">
+    <div class="form-box" id="login-box">
+        <h2>Login</h2>
+        <input type="text" id="login-username" placeholder="Tên đăng nhập">
+        <input type="password" id="login-password" placeholder="Mật khẩu">
+        <button onclick="handleLogin()">Login</button>
+        <p>Don't have an account? <a href="#" onclick="showRegister()">Register</a></p>
+    </div>
+    <div class="form-box" id="register-box" style="display:none;">
+        <h2>Register</h2>
+        <input type="text" id="register-username" placeholder="Tên đăng nhập">
+        <input type="password" id="register-password" placeholder="Mật khẩu">
+        <button onclick="handleRegister()">Register</button>
+        <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+    </div>
     </div>
 </body>
 </html>
