@@ -131,8 +131,14 @@
             
             <!-- Begin: nav-back -->
             <ul id="nav-back">
-                <li><a href="">Register</a></li>
-                <li class="auth-button"><a href="#" onclick="openAuthModal()">Login</a></li>
+                <li>
+                    <a href="#" onclick="openAuthModal();showRegister();return false;">
+                        Register
+                    </a>
+                </li>
+                <li class="auth-button">
+                    <a href="#" onclick="openAuthModal()">Login</a>
+                </li>
                 <li>
                     <i class="more-icon ti-more"></i>
                     <ul class="more-menu">
