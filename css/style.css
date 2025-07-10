@@ -540,13 +540,22 @@ h1 {
 /* phần mới */
 #detail-view {
   display: flex;
-  gap: 20px;
-  padding: 20px;
+  align-items: flex-start; 
+  gap: 85px;
+  padding: 70px 85px;
   background-color: white;
   border-radius: 12px;
-  margin: 70px auto;
-  max-width: 1000px;
+  margin: 80px auto;
+  max-width: 90%;
+  width: fit-content; 
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.detail-content {
+  max-width: 760px;
+  word-wrap: break-word;
+  line-height: 1.2;
+  text-align: justify; 
 }
 
 #detail-view.hidden {
@@ -554,20 +563,22 @@ h1 {
 }
 
 #detail-view img {
-  width: 220px;
+  width: 268px;
   height: auto;
   border-radius: 6px;
 }
 
-#detail-view h3 {
+#detail-view h2 {
   margin-top: 0;
   font-size: 24px;
   color: #222;
 }
 
 #detail-view p {
-  font-size: 15px;
+  margin-top: 4px;
+  font-size: 17px;
   line-height: 1.5;
+  text-align: justify; 
 }
 
 #back-button {

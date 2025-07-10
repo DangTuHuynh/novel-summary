@@ -4,18 +4,19 @@ let allStories = [];
 let filteredStories = [];
 let covers = {};
 
-// Gọi dữ liệu từ JSON
 Promise.all([
   fetch('data/novels.json').then(res => res.json()),
   fetch('data/cover novels.json').then(res => res.json())
 ]).then(([novels, coverData]) => {
   coverData.forEach(item => {
     const key = Object.keys(item)[0];
-    covers[key] = item[key];
+    covers[key] = item[key]; 
   });
 
-  allStories = novels;
-  filteredStories = novels;
+
+  const shuffled = [...novels].sort(() => Math.random() - 0.5);
+  allStories = shuffled;
+  filteredStories = shuffled;
   renderStories();
 }).catch(error => {
   console.error('Lỗi khi tải dữ liệu:', error);
@@ -30,43 +31,30 @@ function normalizeText(text) {
 
 function renderStories() {
   const container = document.getElementById('story-list');
-  container.innerHTML = ''; // Xoá cũ
+  container.innerHTML = ''; 
   const nextStories = filteredStories.slice(currentIndex, currentIndex + storiesPerPage);
 
+  q = 0;
   nextStories.forEach(story => {
     q++;
     const storyDiv = document.createElement('div');
-    // storyDiv.className = 'story-card';
 
-    const coverUrl = covers[story.name] || 'https://www.novelupdates.com/img/noimagefound.jpg';
+    const coverUrl = covers[story.name]?.cover || 'https://www.novelupdates.com/img/noimagefound.jpg';
 
-    // code cũ
-    // storyDiv.innerHTML = `<div class='story-card' onclick='clickAnh(${q})'>
-    //   <img src="${coverUrl}" alt="Cover" class='pic'>
-    //   <h3>${story.name}</h3>
-    //   <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
-    //   <p><strong>Rating:</strong> ${story.rating}</p>
-    //   </div>
-    // `;
-
-    // code mới
     storyDiv.innerHTML = `<div class='story-card' onclick='clickAnh(${q})'>
       <img src="${coverUrl}" alt="Cover" class='pic'>
-      <h3 class="story-title">${story.name}</h3>
+      <h2 class="story-title">${story.name}</h2>
       <span class="see-more" onclick="toggleTitle(this, '${story.name.replace(/'/g, "\\'")}'); event.stopPropagation()">xem thêm</span>
       <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
       <p><strong>Rating:</strong> ${story.rating}</p>
-      <i class="favorite-icon fa fa-heart" data-name="${story.name}"></i>
     </div>`;
     
-
     container.appendChild(storyDiv);
   });
 
   currentIndex += storiesPerPage;
 }
 
-// Nút "Lọc"
 document.getElementById('apply-filters').addEventListener('click', () => {
   const keyword = normalizeText(document.getElementById('search-box').value);
   const selectedGenres = Array.from(document.querySelectorAll('.genre-checkbox:checked')).map(cb => cb.value);
@@ -83,29 +71,14 @@ document.getElementById('apply-filters').addEventListener('click', () => {
   renderStories();
 });
 
-// Nút "Tải thêm"
 document.getElementById('load-more').addEventListener('click', renderStories);
 
 
-//add event click
 let banner= document.getElementById('banner'); let q=0
-  // code cũ
-  // function clickAnh(x){
-  //   let story_2=filteredStories[x-1]
-  //   const coverUrl = covers[story_2.name] || 'https://www.novelupdates.com/img/noimagefound.jpg';
-  //   banner.innerHTML=`
-  //     <img src="${coverUrl}" alt="Cover" class='pic'>
-  //     <h3>${story_2.name}</h3>
-  //     <p><strong>Genres:</strong> ${Array.isArray(story_2.genres) ? story_2.genres.join(', ') : story_2.genres}</p>
-  //     <p><strong>Rating:</strong> ${story_2.rating}</p>
-  // `
-  // console.log(filteredStories[x-1])
-  // }
-
-  // code mới
   function clickAnh(x) {
   const story = filteredStories[x - 1];
-  const coverUrl = covers[story.name] || 'https://www.novelupdates.com/img/noimagefound.jpg';
+  const coverUrl = covers[story.name]?.cover || 'https://www.novelupdates.com/img/noimagefound.jpg';
+  const description = covers[story.name]?.description || "Không có mô tả cho truyện này.";
 
   const detailView = document.getElementById('detail-view');
   const storyList = document.getElementById('story-list');
@@ -113,16 +86,18 @@ let banner= document.getElementById('banner'); let q=0
 
   detailView.innerHTML = `
     <img src="${coverUrl}" alt="Cover">
-    <div>
-      <h3>${story.name}</h3>
+    <div class="detail-content">
+      <h2>${story.name}</h2>
       <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
       <p><strong>Rating:</strong> ${story.rating}</p>
-      <p>${story.description || "Không có mô tả cho truyện này."}</p>
+      <p><strong>Description:</strong></p>
+      <p>${description}</p>
       <div class="back-button-container">
         <button id="back-button">back</button>
       </div>
     </div>
   `;
+
 
   detailView.classList.remove('hidden');
   storyList.style.display = 'none';
@@ -155,8 +130,9 @@ document.getElementById('random-novel').addEventListener('click', (e) => {
 // Hàm Phụ cho "list"
 function renderAllStories() {
   const container = document.getElementById('story-list');
-  container.innerHTML = ''; // xoá cũ
+  container.innerHTML = '';
 
+  q = 0;
   filteredStories.forEach(story => {
     q++;
     const storyDiv = document.createElement('div');
@@ -164,36 +140,15 @@ function renderAllStories() {
 
     storyDiv.innerHTML = `<div class='story-card' onclick='clickAnh(${q})'>
       <img src="${coverUrl}" alt="Cover" class='pic'>
-      <h3 class="story-title">${story.name}</h3>
+      <h2 class="story-title">${story.name}</h2>
       <span class="see-more" onclick="toggleTitle(this, '${story.name.replace(/'/g, "\\'")}'); event.stopPropagation()">xem thêm</span>
       <p><strong>Genres:</strong> ${Array.isArray(story.genres) ? story.genres.join(', ') : story.genres}</p>
       <p><strong>Rating:</strong> ${story.rating}</p>
-      <i class="favorite-icon fa fa-heart" data-name="${story.name}"></i>
     </div>`;
 
     container.appendChild(storyDiv);
   });
-  const favIcon = storyDiv.querySelector('.favorite-icon');
-  let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
 
-  if (favorites.includes(story.name)) {
-    favIcon.classList.add('favorited');
-  }
-
-  favIcon.addEventListener('click', (e) => {
-    e.stopPropagation(); // Ngăn không trigger clickAnh()
-    let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-
-    if (favorites.includes(story.name)) {
-      favorites = favorites.filter(name => name !== story.name);
-      favIcon.classList.remove('favorited');
-    } else {
-      favorites.push(story.name);
-      favIcon.classList.add('favorited');
-    }
-
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-  });
 }
 
 // list 
@@ -236,14 +191,13 @@ function toggleTitle(span, fullTitle) {
 }
 
 
-// code mới // gợi ý tìm kiếm 
+// gợi ý tìm kiếm 
 const searchBox = document.getElementById('search-box');
 const suggestionBox = document.getElementById('search-suggestions');
 
 searchBox.addEventListener('input', () => {
   const rawInput = searchBox.value;
 
-  // Chuẩn hóa input bằng innerHTML -> innerText
   const tempInputDiv = document.createElement('div');
   tempInputDiv.innerHTML = rawInput;
   const input = normalizeText(rawInput);
@@ -254,14 +208,14 @@ searchBox.addEventListener('input', () => {
     return;
   }
 
-  // Tìm truyện khớp (cũng chuẩn hóa)
+  // Tìm truyện khớp
   const matches = allStories
     .map(story => ({
       original: story.name,
       clean: normalizeText(story.name)
     }))
     .filter(entry => entry.clean.includes(input))
-    .slice(0, 8); // giới hạn gợi ý
+    .slice(0, 8);
 
   if (matches.length === 0) {
     suggestionBox.classList.add('hidden');
@@ -269,13 +223,11 @@ searchBox.addEventListener('input', () => {
     return;
   }
 
-  // Gợi ý hiển thị tên gốc
+  // Gợi ý 
   suggestionBox.innerHTML = matches.map(entry => `<li>${entry.original}</li>`).join('');
   suggestionBox.classList.remove('hidden');
 });
 
-
-// Khi click vào 1 gợi ý
 suggestionBox.addEventListener('click', (e) => {
   if (e.target.tagName === 'LI') {
     searchBox.value = e.target.innerText;
@@ -292,7 +244,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// js Login
+//Login
 function openAuthModal() {
   document.getElementById('auth-modal').style.display = 'flex';
   showLogin();
