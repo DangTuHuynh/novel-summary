@@ -22,9 +22,7 @@
                     </a>
                 </li>
                 <li><a href="">Home</a></li>
-                <li><a href="">Home</a></li>
                 <li><a href="#" id="random-novel">Random novel</a></li>
-                <li><a href="#">Thảo luận</a></li>
                 <li><a href="#" id="full-list">Dach sách</a></li>
                 <li>
                     <a href="#">
@@ -142,26 +140,17 @@
                 <li class="auth-button">
                     <a href="#" onclick="openAuthModal()">Login</a>
                 </li>
-                <li>
-                    <i class="more-icon ti-more"></i>
-                    <ul class="more-menu">
-                        <li id="dark-mode-toggle">
-                            <a href="">Dark mode</a>
-                            <i class="darkground-off-icon fa fa-toggle-off"></i>
-                        </li>
-                        <li><a href="">favourite</a></li>
-                    </ul>                
-                </li>
-                <li><i class="search-icon ti-search"></i></li>
 
                 <!--@media more-toggle-->
                 <li id="more-toggle">
                     <i class="ti-menu"></i>
                     <ul class="more-menu" id="more-dropdown">
-                        <li><a href="">Register</a></li>
+                        <li>
+                            <a href="#" onclick="openAuthModal();showRegister();return false;">
+                                Register
+                            </a>
+                        </li>
                         <li class="auth-button"><a href="#" onclick="openAuthModal()">Login</a></li>
-                        <li><a href="">Dark mode</a></li>
-                        <li><a href="">Favourite</a></li>
                     </ul>
                 </li>
 
